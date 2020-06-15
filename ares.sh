@@ -420,7 +420,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_A320X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -449,7 +449,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_J530X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -479,7 +479,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_J730X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -510,7 +510,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_J710X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -539,7 +539,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_J701X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -568,7 +568,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_G610X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -654,7 +654,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_A320X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -678,7 +678,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_J530X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -703,7 +703,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_J730X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -730,7 +730,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_J710X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -757,7 +757,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_J701X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "
@@ -784,7 +784,7 @@ do
               echo " Building TREBLE variant "
               CR_CONFIG_USB=$CR_CONFIG_TREBLE
               CR_VARIANT=$CR_VARIANT_G610X-TREBLE
-              CR_RAMDISK=$CR_RAMDISKPORT
+              CR_RAMDISK=$CR_RAMDISK
               CR_DTB_MOUNT=$CR_DTS_TREBLE
             else
               echo " Building OneUI variant "

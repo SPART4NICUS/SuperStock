@@ -2,8 +2,6 @@ on early-init
     mkdir /mnt/vendor/efs 0771 radio system
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
-# AresKernel
-
 on init
     start watchdogd
 
@@ -91,8 +89,6 @@ on boot
     # to improve allocation times
 #    write /proc/sys/vm/min_free_kbytes 32768
 #    write /proc/sys/vm/min_free_order_shift 1
-
-# AresKernel
 
 # SSWAP
     write /proc/sys/vm/swappiness 145
@@ -924,12 +920,14 @@ on fs
     chmod 0660 /dev/radio0
     chown bluetooth bluetooth /sys/devices/bluetooth/lna_en
 
-# LPM
-service lpm /vendor/bin/lpm
-    class sec-charger
-    user root
-    group system radio input
-    critical
+# ARGOSD network_throughput
+    chown system system /dev/network_throughput
+
+# ARGOSD
+service argos-daemon /vendor/bin/argosd
+    class main
+    user system
+    group system radio
 
 # LPM
 on property:ro.bootmode=charger
@@ -938,28 +936,57 @@ on property:ro.bootmode=charger
     mkdir /efs/lpm 0775 system system
     class_start sec-charger
 
-# Bluetooth
-on property:wc_transport.start_hci=true
-    start start_hci_filter
+# MobiCore startup
+#service mobicore /system/bin/mcDriverDaemon -r /system/app/020a0000000000000000000000000000.drbin -r /system/app/mcRegistry/FFFFFFFFD00000000000000000000016.tlbin
+#    user drmrpc
+#    group drmrpc
+#    class core
 
-on property:wc_transport.start_hci=false
-    stop start_hci_filter
-
-service start_hci_filter /vendor/bin/wcnss_filter
-    class late_start
-    user bluetooth
-    group bluetooth
-    disabled
+# RPMB daemon
+service rpmbd /system/bin/rpmbd
+     user root
+     group drmrpc
+     class main
 
 on property:sys.mobicoredaemon.enable=true
     start cs_service
     write /proc/iccc_ready 1
 
-on property:ro.multisim.simslotcount=1
-    setprop persist.radio.multisim.config ss
+# Modem boot daemon
+#    service cpboot-daemon /system/bin/cbd -d
+#    class main
+#    user root
+#    group radio cache inet misc audio sdcard_rw log
 
-on property:ro.multisim.simslotcount=2
-    setprop persist.radio.multisim.config dsds
+# DM daemon
+#    service DM-daemon /system/bin/dmd
+#    class main
+#    user root
+#    group system
+
+# FINGERPRINT FRAMEWORK : starts fingerprintd
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group system
+
+# faced
+service faced /system/bin/faced
+    class late_start
+    user system
+    group system
+
+# SCE daemon
+#    service SCE-daemon /system/bin/sced
+#    class main
+#    user root
+#    group system
+
+# diag daemon
+#    service DM-daemon /system/bin/diagexe
+#    class main
+#    user root
+#    group system
 
 service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /storage/sdcard
     class late_start
@@ -967,6 +994,13 @@ service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /
 service fuse_usb1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usb1 /storage/usb1
     class late_start
     disabled
+
+# IPSec for VOLTE
+service ipsec-daemon /system/bin/IPSecService
+    class main
+    socket ipsec_socket stream 660 system net_admin
+    user system
+    group system net_raw inet net_admin
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /system/bin/watchdogd 10 20
@@ -986,15 +1020,22 @@ service swapon /vendor/bin/sswap -s -f 1536
     seclabel u:r:sswap:s0
     oneshot
 
-on property:init.svc.bootanim=stopped
-# set property for touchkey light voltage table
-    chown system system /efs/FactoryApp/tkey_light_version
-    chown system system /efs/FactoryApp/tkey_light_crc
+# sem_daemon
+service sem_daemon /system/bin/sem_daemon
+    class core
+    user system
+    group system nfc
+    disabled
 
-# GPS
-service gpsd /vendor/bin/hw/gpsd -c /vendor/etc/gnss/gps.cfg
-    class main
-    user gps
-    group system inet net_raw wakelock
-    ioprio be 0
-    seclabel u:r:gpsd:s0
+on property:sys.boot_completed=1
+    setprop security.semdaemonfinish 0
+    start sem_daemon
+
+on property:security.semdaemonfinish=1
+    stop sem_daemon
+
+on property:ro.multisim.simslotcount=1
+    setprop persist.radio.multisim.config ss
+
+on property:ro.multisim.simslotcount=2
+    setprop persist.radio.multisim.config dsds

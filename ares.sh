@@ -35,7 +35,7 @@ CR_KERNEL=$CR_DIR/arch/arm64/boot/Image
 CR_DTB=$CR_DIR/boot.img-dtb
 # Kernel Name and Version
 CR_VERSION=V1
-CR_NAME=AresKernel
+CR_NAME=SUPERStock
 # Thread count
 CR_JOBS=$(nproc --all)
 # Target android version and platform (7/n/8/o/9/p)
@@ -50,8 +50,8 @@ export ANDROID_MAJOR_VERSION=$CR_ANDROID
 export PLATFORM_VERSION=$CR_PLATFORM
 export $CR_ARCH
 # J710X Specific
-CR_ANDROID_J710X=n
-CR_PLATFORM_J710X=7.0.0
+CR_ANDROID_J710X=q
+CR_PLATFORM_J710X=10.0.0
 ##########################################
 # Device specific Variables [SM-A320X]
 CR_DTSFILES_A320X="exynos7870-a3y17lte_eur_open_00.dtb exynos7870-a3y17lte_eur_open_01.dtb exynos7870-a3y17lte_eur_open_02.dtb exynos7870-a3y17lte_eur_open_03.dtb"

@@ -22,6 +22,10 @@ on post-fs
     setrlimit 8 67108864 67108864
 
 on post-fs-data
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1794000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1794000
 # OLAF setup cgroup freezer
     mkdir /dev/freezer
     mount cgroup none /dev/freezer freezer
@@ -228,6 +232,8 @@ on boot
     chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
 	
 	#Setting Governor Parameters
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 343000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1586000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "39000 1248000:19000"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration 40000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 89  
@@ -235,7 +241,10 @@ on boot
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "75 1248000:85"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 20000
-	
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "80 343000:95 449000:90 546000:85 676000:85 757000:80 839000:80 902000:75 1014000:70 1144000:65 1248000:65 1352000:65 1482000:60 1586000:45 1690000:20 1794000:19"
+
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 343000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1586000
 	write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "39000 1248000:19000"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 89  
@@ -243,6 +252,7 @@ on boot
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "75 1248000:85"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "80 343000:95 449000:90 546000:85 676000:85 757000:80 839000:80 902000:75 1014000:70 1144000:65 1248000:65 1352000:65 1482000:60 1586000:45 1690000:20 1794000:19"
 	
 	# MSP Core Status
     chown system system /sys/devices/system/cpu/cpu1/online

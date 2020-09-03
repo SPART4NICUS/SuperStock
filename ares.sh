@@ -17,7 +17,7 @@
 # Main Dir
 CR_DIR=$(pwd)
 # Define toolchan path
-CR_TC=~/Android/Toolchains/aarch64-linux-gnu/bin/aarch64-linux-gnu-
+CR_TC=~/Android/Toolchains/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 # Define proper arch and dir for dts files
 CR_DTS=arch/arm64/boot/dts
 CR_DTS_TREBLE=arch/arm64/boot/universal7870.dtsi
@@ -131,16 +131,16 @@ else
 fi
 
 # Options
-read -p "Kernel SU? (y/n) > " yn
-if [ "$yn" = "Y" -o "$yn" = "y" ]; then
-     echo " WARNING : KernelSU Enabled!"
-     export CONFIG_ASSISTED_SUPERUSER=y
-     CR_ROOT="1"
-fi
-  if [ $CR_HALLIC = "1" ]; then
-    echo " Inverting HALL_IC Status"
-    echo "CONFIG_HALL_EVENT_REVERSE=y" >> $CR_DIR/arch/$CR_ARCH/configs/tmp_defconfig
-  fi
+#read -p "Kernel SU? (y/n) > " yn
+#if [ "$yn" = "Y" -o "$yn" = "y" ]; then
+#     echo " WARNING : KernelSU Enabled!"
+#     export CONFIG_ASSISTED_SUPERUSER=y
+#     CR_ROOT="1"
+#fi
+#  if [ $CR_HALLIC = "1" ]; then
+#    echo " Inverting HALL_IC Status"
+#    echo "CONFIG_HALL_EVENT_REVERSE=y" >> $CR_DIR/arch/$CR_ARCH/configs/tmp_defconfig
+#  fi
 
 BUILD_CLEAN()
 {
